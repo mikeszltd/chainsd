@@ -117,24 +117,24 @@ func (tail *Tail) Do(input chan messages.Message) chan messages.Message {
 
 		glog.Infof("Started tail [%s]", tail.filename)
 		for err == nil {
-			line, err := reader.ReadString('\n')
-
-			if err != nil {
-				glog.Errorf("[tail] Problem reading from \"%s\"", tail.filename)
-			} else {
-				processed, err := tail.ProcessLine(line)
-				if err != nil {
-					glog.Errorf("[tail] Problem processing line \"%s\"", line)
-				} else {
-					message <- *messages.NewMessage(tail.tag, processed)
-				}
-			}
-
 			select {
 			case <- tail.stop:
 				glog.Info("Stopping tail")
 				tail.quit <- true
 				return
+			default:
+				line, err := reader.ReadString('\n')
+
+				if err != nil {
+					glog.Errorf("[tail] Problem reading from \"%s\"", tail.filename)
+				} else {
+					processed, err := tail.ProcessLine(line)
+					if err != nil {
+						glog.Errorf("[tail] Problem processing line \"%s\"", line)
+					} else {
+						message <- *messages.NewMessage(tail.tag, processed)
+					}
+				}
 			}
 		}
 	}()
