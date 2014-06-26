@@ -116,6 +116,7 @@ func main() {
 		for _, store := range configuration.stores {			
 			(*store).Close()
 		}
+		glog.Flush()
 		os.Exit(0)
 	}()
 
