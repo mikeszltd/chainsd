@@ -7,7 +7,9 @@ Processing pipeline consists of multiple `Chains` of `Links`. There are 3 types 
 
 # Chain
 
-Chain is made of `Links` - `generators`, `filters` and `outputs`.
+Chain is made of `Links` - `generators`, `filters` and `outputs`. 
+You can have multiple chains running simultaneously. 
+Each chain has to start with `generator` followed by `output`. You can have multiple filters between `generator` and `output`.
 
 ## Generators
 
