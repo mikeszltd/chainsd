@@ -1,4 +1,4 @@
-Chainsd JSON processor
+Chainsd JSON processor [![Build Status](https://drone.io/github.com/mikeszltd/chainsd/status.png)](https://drone.io/github.com/mikeszltd/chainsd/latest)
 ======================
 
 Chainsd is to be ultimate monitoring and data processing tool focused on JSON messages. 
